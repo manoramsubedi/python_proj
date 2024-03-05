@@ -19,7 +19,7 @@ def generate_passowrd(min_length, numbers=True, special_characters=True):
     has_number = False
     has_special = False
 
-    if meet_criteria or len(pwd)<min_length:
+    while not meet_criteria or len(pwd) < min_length:
         new_char = random.choice(characters)
         pwd += new_char
 
@@ -36,9 +36,13 @@ def generate_passowrd(min_length, numbers=True, special_characters=True):
         if special_characters:
             meet_criteria = meet_criteria and has_special
 
+    return pwd
     
 
 
-def main():
-    length = int(input("Input minimun length for password: "))
-    generate_passowrd(length, False, False)
+
+length = int(input('Enter minimun length for password: '))
+has_number = input('Do you want to have numbers? (y/n)?').lower() == 'y'
+has_special = input('Do you want to have special characters? (y/n)?').lower() =='y'
+pwd = generate_passowrd(length, has_number, has_special)
+print(pwd)
